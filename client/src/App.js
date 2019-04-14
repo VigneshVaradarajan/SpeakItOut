@@ -1,12 +1,18 @@
 import React, { Component } from "react";
 import SpeakItOutContract from "./contracts/SpeakItOut.json";
 import getWeb3 from "./utils/getWeb3";
-import Profile from "./components/Profile";
+import Button from 'react-bootstrap/Button';
+import Navbar from 'react-bootstrap/Navbar';
+// import NavDropdown from 'react-bootstrap/NavDropdown';
+import Nav from 'react-bootstrap/Nav';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
+import DetailsPage from './components/DetailsPage';
 
 import "./App.css";
 
 class App extends Component {
-  state = { profileCount: 0, web3: null, accounts: null, contract: null };
+  state = { profileCount: 0, web3: null, accounts: null, contract: null, navigate: "home" };
 
   componentDidMount = async () => {
     try {
@@ -43,11 +49,28 @@ class App extends Component {
     // await contract.methods.set(5).send({ from: accounts[0] });
 
     // // Get the value from the contract to prove it worked.
-     const response = await contract.methods.getCount().call();
-
+     const response = await contract.methods.count().call();
+    console.log(response.toNumber());
     // // Update state with the result.
-     this.setState({ profileCount: response, sender:accounts[0] });
+    this.setState({ profileCount: response.toNumber(), sender:accounts[0] });
   };
+
+  setToBlogPage =  () => {
+    this.setState({ navigate: "blog"});
+    console.log("Page State is set to blog");
+  }
+  setToChatPage =  () => {
+    this.setState({ navigate: "chat"});
+    console.log("Page State is set to chat");
+  }
+  setToProfilePage =  () => {
+    this.setState({ navigate: "profile"});
+    console.log("Page State is set to blog");
+  }
+  setToHomePage =  () => {
+    this.setState({ navigate: "home"});
+    console.log("Page State is set to home");
+  }
 
   render() {
     if (!this.state.web3) {
@@ -55,9 +78,21 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <h1>Speak It Out!</h1>
-        <Profile web3={this.state.web3} contract={this.state.contract} sender={this.state.accounts[0]}/>
-        <div>The stored value is: {this.state.profileCount}</div>
+            <link  rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossOrigin="anonymous"/>
+<Navbar bg="light" expand="lg">
+  <Navbar.Brand href="#home" onClick={this.setToHomePage}>Speak It Out</Navbar.Brand>
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Nav className="mr-auto">
+      <Nav.Link href="#blog" onClick={this.setToBlogPage}>Blog</Nav.Link>
+      <Nav.Link href="#chat" onClick={this.setToChatPage}>Chat</Nav.Link>
+      <Nav.Link href="#profile" onClick={this.setToProfilePage}>Profile </Nav.Link>
+    </Nav>
+    
+  </Navbar.Collapse>
+</Navbar> 
+<DetailsPage navigate ={this.state.navigate} web3={this.state.web3} contract={this.state.contract} sender={this.state.sender}/>
+
       </div>
     );
   }
