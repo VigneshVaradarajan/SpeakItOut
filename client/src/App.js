@@ -21,6 +21,7 @@ class App extends Component {
 
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
+      console.log("Accounts Length App : " +accounts);
 
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
@@ -33,6 +34,7 @@ class App extends Component {
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
       this.setState({ web3, accounts, contract: instance }, this.runExample);
+    
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -42,6 +44,8 @@ class App extends Component {
     }
   };
 
+
+
   runExample = async () => {
     const { accounts, contract } = this.state;
 
@@ -49,10 +53,20 @@ class App extends Component {
     // await contract.methods.set(5).send({ from: accounts[0] });
 
     // // Get the value from the contract to prove it worked.
-     const response = await contract.methods.count().call();
+    const response = await contract.methods.count().call();
     console.log(response.toNumber());
+
+
+
+    
+
     // // Update state with the result.
     this.setState({ profileCount: response.toNumber(), sender:accounts[0] });
+
+    console.log(this.state.sender);
+    const profileData = await contract.methods.profiles(this.state.sender).call();
+    this.setState({ firstName: profileData.firstName, lastName: profileData.lastName});
+    console.log(response);
   };
 
   setToBlogPage =  () => {
@@ -87,6 +101,11 @@ class App extends Component {
       <Nav.Link href="#blog" onClick={this.setToBlogPage}>Blog</Nav.Link>
       <Nav.Link href="#chat" onClick={this.setToChatPage}>Chat</Nav.Link>
       <Nav.Link href="#profile" onClick={this.setToProfilePage}>Profile </Nav.Link>
+    </Nav>
+    <Nav>
+    <Nav>
+      <Nav.Link href="#profile"  onClick={this.setToProfilePage}> {this.state.firstName} {this.state.lastName}</Nav.Link>
+    </Nav>
     </Nav>
     
   </Navbar.Collapse>
