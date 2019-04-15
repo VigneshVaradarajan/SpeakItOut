@@ -128,8 +128,17 @@ class DetailsPage extends Component {
 
    
 
-    applaudBlog = async (id) => {
-        console.log(id);
+    applaudBlog = async (author) => {
+        let contract = this.props.contract;
+        let web3 = this.props.web3;
+        console.log(author);
+        var value = '1';
+        const response = await contract.methods.sendETH(author).send({
+            from: this.props.sender,
+            gas: 3000000,
+            value: web3.utils.toWei( value, 'ether')
+        });
+        console.log("Applauded");
     }
 
     sendMessage = async () => {
@@ -252,7 +261,7 @@ class DetailsPage extends Component {
                 return (
                     <div>
 
-                        <Form onSubmit={this.addBlog} style={{ width: '40rem' }}>
+                        <Form onSubmit={this.addBlog} style={{ width: '80rem' }}>
                             <Form.Group controlId="formBasicTitle">
                                 <Form.Label>Title</Form.Label>
                                 <Form.Control ref={input => this.title = input} type="text" placeholder="Enter Title" />
@@ -269,7 +278,7 @@ class DetailsPage extends Component {
                         </Form>
                         <ul  >
                             {this.state.blog.map(item => (
-                                <Card border="primary" style={{ width: '40rem', alignContent: 'center' }}>
+                                <Card bg="info" border="primary" style={{ width: '80rem', alignContent: 'center' }}>
                                     <Card.Img variant="top" src={require(".././images/sky1.jpg")} />
                                     <Card.Body>
                                         <Card.Title>{item.title}</Card.Title>
@@ -282,7 +291,7 @@ class DetailsPage extends Component {
                                         <p>        {item.author} 
                                         </p>
 
-                                        <Button variant="primary" onClick={() => this.applaudBlog(item.id)} >Applaud</Button>
+                                        <Button variant="primary" onClick={() => this.applaudBlog(item.author)} >Applaud</Button>
                                     </Card.Body>
                                 </Card>
                             ))}
@@ -312,7 +321,7 @@ class DetailsPage extends Component {
                                         <Card.Title>Messages</Card.Title>
                                         <ul  >
                             {this.state.messagesArray.map(item => (
-                                <Card border="primary" style={{ width: '40rem', alignContent: 'center' }}>
+                                <Card bg="info" border="primary" style={{ width: '40rem', alignContent: 'center' }}>
                                     <Card.Body>
                                         <Card.Text>
                                             {item}
