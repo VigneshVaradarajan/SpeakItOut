@@ -12,10 +12,6 @@ contract SpeakItOut {
         uint id;
         string title;
         string data;
-        // Number of users that upvoted
-        uint upvotes;
-        // User that upvoted the blog
-        address[] users;
         address author;
         string authorName; 
     }
@@ -38,28 +34,23 @@ contract SpeakItOut {
 
     //Add a new Account
     function addAccount(string memory firstName, string memory lastName) public{
-        //Check if account already exists
+        require(!profiles[msg.sender].isExists);
+
         ProfileDetails memory profileDetails = ProfileDetails(firstName,lastName,true);
         profiles[msg.sender] = profileDetails;
         members.push(msg.sender);
         count++;
     }
 
-    //Edit an Existing account
-    function editAccount(string memory firstName, string memory lastName) public{
-        //Check if account exists
-        ProfileDetails memory profileDetails = ProfileDetails(firstName,lastName,true);
-        profiles[msg.sender] = profileDetails;
-    }
+    
 
     function getCount() public view returns(uint){
       return count;
     }
     function addBlog(string memory title,string memory data) public {
-        address[] memory users;
         ProfileDetails memory profile = profiles[msg.sender];
         string memory author = profile.firstName;
-        Blog memory blog = Blog(blogCount++,title,data,0,users,msg.sender,author);
+        Blog memory blog = Blog(blogCount++,title,data,msg.sender,author);
         blogs.push(blog);
         
     }

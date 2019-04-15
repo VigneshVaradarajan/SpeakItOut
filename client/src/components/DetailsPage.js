@@ -243,15 +243,19 @@ class DetailsPage extends Component {
          } else if (this.props.navigate === "home") {
                 return (<div>
                     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossOrigin="anonymous" />
-                    <Card className="bg-dark text-white ">
+                    <Card text="dark" className="bg-dark text-white ">
                         <Card.Img src={require('.././images/sky1.jpg')} alt="Card image" />
                         <Card.ImgOverlay>
-                            <Card.Title>Card title</Card.Title>
-                            <Card.Text>
-                                This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.
+                            <Card.Title><h1>Speak It Out</h1></Card.Title>
+                            <Card.Text >
+                            <h3>Freedom of speech is apparently a fundamental right but in today's centralized world, it is rarely implemented.
+Large powerful organizations usually dictate what you can talk about.
+Speak it out is a decentralized platformm for blogging which enforces the fundamental right of Freedom of Speech. It gives
+you the power to talk about any topics and express your ideas.
+And on top of it, Speak it out provides a secure messaging application so that you can share your thoughts with your 
+fellow bloggers.</h3>
+
             </Card.Text>
-                            <Card.Text>Last updated 3 mins ago</Card.Text>
                         </Card.ImgOverlay>
                     </Card>
                 </div>)
