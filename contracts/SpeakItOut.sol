@@ -28,7 +28,7 @@ contract SpeakItOut {
 
     }
 
-       uint msgCount = 0;
+    uint msgCount = 0;
     event messageSentEvent(address indexed from, address indexed to, string message, bytes32 encryption,uint msgCount);
 
 
