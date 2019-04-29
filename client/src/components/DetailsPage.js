@@ -21,7 +21,7 @@ class DetailsPage extends Component {
             this.setState({ blog: new_array });
             i--;
         }
-        console.log(this.props.sender);
+        console.log("Sender :" + this.props.sender);
         const response = await contract.methods.profiles(this.props.sender).call();
         this.setState({ profile: response});
         console.log(response);

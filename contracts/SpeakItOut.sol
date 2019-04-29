@@ -23,6 +23,8 @@ contract SpeakItOut {
     uint public blogCount;
     uint public count;
     constructor() public{
+        addBlog('HELLO','Hello is a song by British singer-songwriter Adele, released on 23 October 2015 by XL Recordings as the lead single from her third studio album, 25 2015. Adele co-wrote the song with her producer, Greg Kurstin. Hello is a piano ballad with soul influences, and lyrics that discuss themes of nostalgia and regret. Upon release, the song was acclaimed by music critics, who compared it favourably to Adeles previous work and praised the songs lyrics and Adeles vocals. It was recorded in Londons Metropolis Studios.');
+
 
     }
 
