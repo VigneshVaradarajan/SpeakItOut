@@ -53,9 +53,11 @@ At this point Metamask must be up and running
 
 # Getting the UI Running
 
-UI is developed using ReactJS
-Go to client folder
+UI is developed using ReactJS - 
+
+Go to client folder and install npm modules
 ```
+> cd client
 > npm install
 ```
 Start the UI
