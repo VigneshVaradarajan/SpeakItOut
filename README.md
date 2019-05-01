@@ -3,8 +3,25 @@
 
 DApp for Blogging and Messaging
 
+
+# Install node.js
+https://nodejs.org/en/download/
+
+
+# Install truffle
+```
+> npm install truffle
+```
+
+Install and Create workspace in Ganache.  
+
+#Install Ganache
+https://truffleframework.com/ganache
+
 At this point, Ganache or any live network must be active.
 Any network configuration can be provided in truffle-config.js
+
+It is important that Blockchain, Ganache and Metamask(Referenced in further steps) must all be running/referring in/to the same network.
 
 ```
   networks :{
@@ -32,6 +49,7 @@ At this point Metamask must be up and running
 1. Install the chrome extension
  https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en
 2. An account must be created
+3. Make sure Metamask is connected to the same network as the blockchain running on Ganache.
 
 # Getting the UI Running
 
