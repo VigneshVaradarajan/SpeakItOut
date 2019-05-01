@@ -15,7 +15,7 @@ https://nodejs.org/en/download/
 
 Install and Create workspace in Ganache.  
 
-#Install Ganache
+# Install Ganache
 https://truffleframework.com/ganache
 
 At this point, Ganache or any live network must be active.
