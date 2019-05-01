@@ -56,6 +56,19 @@ At this point Metamask must be up and running
 UI is developed using ReactJS - 
 
 Go to client folder and install npm modules
+
+# Install Pre-requisites for npm install
+
+```
+> npm install -g  windows-build-tools
+```
+Once build tools are installed, this includes python 2.7. Set python 2.7 path in npm config.
+
+```
+> npm config set python /path/to/executable/python2.7
+
+```
+
 ```
 > cd client
 > npm install
